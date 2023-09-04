@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import com.legal_guardian_soa_canete_2023.model.legalGuardian;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import com.legal_guardian_soa_canete_2023.repository.legalGuardianRepository;
@@ -39,7 +40,8 @@ public class testDataUnitary {
                 "45781478",
                 "Sin dirección exacta",
                 "963258420",
-                "CarlaMasNada@gmail.com");
+                "CarlaMasNada@gmail.com",
+                "A");
 
         webTestClient.post()
                 .uri("/api/legalGuardian")
@@ -89,6 +91,21 @@ public class testDataUnitary {
 
     }
 
+    @Test
+    public void testListActiveLegalGuardian() {
+        webTestClient.get().uri("/api/legalGuardian/list/active")
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON)
+                .expectBodyList(legalGuardian.class)
+                .consumeWith(response -> {
+                    List<legalGuardian> dataList = response.getResponseBody();
+                    assertTrue("La lista no debe de estar vacía: ", dataList != null && !dataList.isEmpty());
+                    assertTrue("La lista debe contener al menos " + 1 + " elementos", dataList.size() >= 1);
+                });
+
+    }
+
     @ParameterizedTest
     @ValueSource(ints = {21})
     public void testUpdateLegalGuardian(int dataId) {
@@ -99,8 +116,9 @@ public class testDataUnitary {
                 "DNI",
                 "45781478",
                 "Sin dirección exacta",
-                "985478000",
-                "CarlaMasNada@gmail.com");
+                "985478001",
+                "CarlaMasNada@gmail.com",
+                "A");
 
         webTestClient.put().uri("/api/legalGuardian/{id}", dataId)
                 .contentType(MediaType.APPLICATION_JSON)

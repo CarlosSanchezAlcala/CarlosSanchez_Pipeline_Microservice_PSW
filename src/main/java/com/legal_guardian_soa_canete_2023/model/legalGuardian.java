@@ -31,7 +31,7 @@ public class legalGuardian {
     @Column
     private String active;
 
-    public legalGuardian(String name, String father_last_name, String mother_last_name, String documentType, String documentNumber, String address, String cell_phone, String email) {
+    public legalGuardian(String name, String father_last_name, String mother_last_name, String documentType, String documentNumber, String address, String cell_phone, String email, String active) {
         this.name = name;
         this.father_last_name = father_last_name;
         this.mother_last_name = mother_last_name;
@@ -40,5 +40,6 @@ public class legalGuardian {
         this.address = address;
         this.cell_phone = cell_phone;
         this.email = email;
+        this.active = active;
     }
 }
