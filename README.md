@@ -1,2 +1,2 @@
-# 13_CarlosSanchez_Pipeline_Microservice
-Dentro de este repositorio, vamos a almacenar los datos del pipeline y/o datos de las pruebas de nuestro microservicio.
+# SOA_Canete_Microservices
+Dentro de este repositorio, se va a contener el microservicio encargado a mi persona "Tutor Legal (Legal Guardian)", vamos a versionar la versión solicitada, con Spring Boot y JDK.

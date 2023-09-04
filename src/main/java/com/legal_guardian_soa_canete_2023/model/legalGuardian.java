@@ -31,10 +31,10 @@ public class legalGuardian {
     @Column
     private String active;
 
-    public legalGuardian(String name, String mother_last_name, String father_last_name, String documentType, String documentNumber, String address, String cell_phone, String email) {
+    public legalGuardian(String name, String father_last_name, String mother_last_name, String documentType, String documentNumber, String address, String cell_phone, String email) {
         this.name = name;
-        this.mother_last_name = mother_last_name;
         this.father_last_name = father_last_name;
+        this.mother_last_name = mother_last_name;
         this.documentType = documentType;
         this.documentNumber = documentNumber;
         this.address = address;

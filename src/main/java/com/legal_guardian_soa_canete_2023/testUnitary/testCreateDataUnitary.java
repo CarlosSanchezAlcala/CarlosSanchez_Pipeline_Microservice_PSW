@@ -37,30 +37,30 @@ public class testCreateDataUnitary {
     @Test
     void testCreateLegalGuardian() {
         legalGuardian newLegalGuardian = new legalGuardian(
-                "María Alejandra",
+                "Carla Alejandra",
+                "Pereira",
                 "Sanchez",
-                "Valerio",
                 "DNI",
-                "78545847",
-                "Av. California 784",
-                "984754148",
-                "MariaValerioSanchez@gmail.com");
+                "45781478",
+                "Sin dirección exacta",
+                "963258420",
+                "CarlaMasNada@gmail.com");
 
         webTestClient.post()
                 .uri("/api/legalGuardian")
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Mono.just(newLegalGuardian), legalGuardian.class)
                 .exchange()
-                .expectStatus().isCreated()
+                .expectStatus().isOk()
                 .expectBody(legalGuardian.class)
                 .value(legalGuardian::getId, notNullValue())
-                .value(legalGuardian::getName, equalTo("María Alejandra"))
+                .value(legalGuardian::getName, equalTo("Carla Alejandra"))
+                .value(legalGuardian::getFather_last_name, equalTo("Pereira"))
                 .value(legalGuardian::getMother_last_name, equalTo("Sanchez"))
-                .value(legalGuardian::getFather_last_name, equalTo("Valerio"))
                 .value(legalGuardian::getDocumentType, equalTo("DNI"))
-                .value(legalGuardian::getDocumentNumber, equalTo("78545847"))
-                .value(legalGuardian::getAddress, equalTo("Av. California 784"))
-                .value(legalGuardian::getCell_phone, equalTo("984754148"))
-                .value(legalGuardian::getEmail, equalTo("MariaValerioSanchez@gmail.com"));
+                .value(legalGuardian::getDocumentNumber, equalTo("45781478"))
+                .value(legalGuardian::getAddress, equalTo("Sin dirección exacta"))
+                .value(legalGuardian::getCell_phone, equalTo("963258420"))
+                .value(legalGuardian::getEmail, equalTo("CarlaMasNada@gmail.com"));
     }
 }
